@@ -12,6 +12,10 @@ import java.util.ArrayList;
  * @author user
  */
 public class InputData {
-    ArrayList<Items> InputItems;
+    ArrayList<Items> inputList;
+
+    public InputData() {
+        inputList = new ArrayList();
+    }
     
 }
