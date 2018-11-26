@@ -12,5 +12,12 @@ public class Items {
     private String nama;
     private double harga;
     private int  jumlah;
+
+    public Items(String nama, double harga, int jumlah) {
+        this.nama = nama;
+        this.harga = harga;
+        this.jumlah = jumlah;
+    }
+    
     
 }
