@@ -13,8 +13,8 @@ import javax.swing.table.DefaultTableModel;
  */
 public class TransaksiJFrame extends javax.swing.JFrame {
 
-    DefaultTableModel tableBarang;
-    InputBarang dataItems;
+    ModelItems items;
+    ModelPenjualan penjualan = new ModelPenjualan();
 
     /**
      * Creates new form TransaksiJFrame
@@ -71,13 +71,13 @@ public class TransaksiJFrame extends javax.swing.JFrame {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Nama", "Harga", "Jumlah"
             }
         ));
         jScrollPane1.setViewportView(jTable1);
@@ -137,9 +137,9 @@ public class TransaksiJFrame extends javax.swing.JFrame {
                     .addComponent(addButton2))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(removeButton3))
-                .addGap(26, 26, 26)
+                    .addComponent(removeButton3)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(29, 29, 29)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(saveButton4)
                     .addComponent(cancelButton5))
