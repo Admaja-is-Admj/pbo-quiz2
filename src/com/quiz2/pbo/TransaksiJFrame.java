@@ -20,6 +20,7 @@ public class TransaksiJFrame extends javax.swing.JFrame {
      * Creates new form TransaksiJFrame
      */
     public TransaksiJFrame() {
+        dataItems = new InputBarang();
         initComponents();
     }
 
