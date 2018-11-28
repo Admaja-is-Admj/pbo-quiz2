@@ -14,6 +14,14 @@ import javax.swing.table.DefaultTableModel;
 public class ModelPenjualan {
 
     private double subTotal = 0;
+
+    public double getSubTotal() {
+        return subTotal;
+    }
+
+    public void setSubTotal(double subTotal) {
+        this.subTotal = subTotal;
+    }
     private double total = 0;
     private DefaultTableModel tabel = new DefaultTableModel();
 
