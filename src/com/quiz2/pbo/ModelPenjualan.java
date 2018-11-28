@@ -13,12 +13,14 @@ import javax.swing.table.DefaultTableModel;
  */
 public class ModelPenjualan {
 
+    private double subTotal = 0;
     private double total = 0;
     private DefaultTableModel tabel = new DefaultTableModel();
 
     public ModelPenjualan() {
-        getTabel().addColumn("Items");
-
+        getTabel().addColumn("Nama");
+        getTabel().addColumn("Harga");
+        getTabel().addColumn("jumlah");
     }
 
     public double getTotal() {
