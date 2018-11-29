@@ -125,6 +125,11 @@ public class TransaksiJFrame extends javax.swing.JFrame {
         });
 
         cancelButton5.setText("Cancel");
+        cancelButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelButton5ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -216,11 +221,13 @@ public class TransaksiJFrame extends javax.swing.JFrame {
 
     private void newButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newButton1ActionPerformed
         int i = 0;
-        SimpleDateFormat format = new SimpleDateFormat("yyMMdd");
-        Date date = new Date();
-        codeField1.setText(format.format(date));
         i++;
-
+        SimpleDateFormat date1 = new SimpleDateFormat("yyMMdd");
+        Date date = new Date();
+        String dateNow = date1.format(date);
+        codeField1.setText(dateNow + String.format("%02d", i));
+        codeField1.setEnabled(false);
+        newButton1.setEnabled(false);
     }//GEN-LAST:event_newButton1ActionPerformed
 
     private void removeButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeButton3ActionPerformed
@@ -228,8 +235,19 @@ public class TransaksiJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_removeButton3ActionPerformed
 
     private void saveButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButton4ActionPerformed
-
+        StringBuilder sb = new StringBuilder();
+        sb.append("Kode : ").append(codeField1.getText()).append("\n");
+        sb.append("Daftar belanja : ").append("\n");
+        while (itemsTable1.getRowCount() > 0) {
+            sb.append(sb)
+        }
+        JOptionPane.showMessageDialog(this, sb, "Detail Penjualan", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_saveButton4ActionPerformed
+
+    private void cancelButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButton5ActionPerformed
+        new TransaksiJFrame().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_cancelButton5ActionPerformed
 
     /**
      * @param args the command line arguments
