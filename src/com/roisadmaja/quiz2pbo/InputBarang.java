@@ -1,0 +1,20 @@
+package com.roisadmaja.quiz2pbo;
+
+import java.util.ArrayList;
+
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+/**
+ *
+ * @author user
+ */
+public class InputBarang {
+
+    public static void main(String[] args) {
+        TransaksiJFrame transaksi = new TransaksiJFrame();
+        transaksi.setVisible(true);
+    }
+}
