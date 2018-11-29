@@ -5,6 +5,7 @@
  */
 package com.roisadmaja.quiz2pbo;
 
+import java.text.SimpleDateFormat;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.*;
 
@@ -14,23 +15,19 @@ import javax.swing.*;
  */
 public class TransaksiJFrame extends javax.swing.JFrame {
 
-    ModelItems items;
-    ModelPenjualan penjualan = new ModelPenjualan();
+    DefaultTableModel tabelItems;
+    ModelPenjualan DataPenjualan;
 
     public TransaksiJFrame() {
+        DataPenjualan = new ModelPenjualan();
         initComponents();
-        isiComboItem();
-        itemsTable1.setModel(penjualan.getTabel());
+
     }
 
-    private void isiComboItem() {
-        ModelItems item1 = new ModelItems("Kopi", 10000);
-        ModelItems item2 = new ModelItems("Susu", 20000);
-        ModelItems item3 = new ModelItems("Gula", 12000);
+    public final void lihatDataItems() {
+        String[] namaKolom = {"Nama, Harga, Jumlah"};
+        Object[][] objekItems = new Object[DataPenjualan.getData().size()][3];
 
-        itemsComboBox1.addItem(item1);
-        itemsComboBox1.addItem(item2);
-        itemsComboBox1.addItem(item3);
     }
 
     /**
@@ -185,16 +182,7 @@ public class TransaksiJFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void addButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButton2ActionPerformed
-        String[] data = new String[3];
-        double harga = 0;
-        int jumlah = 0;
-        data[0] = items.getNama();
-        harga = items.getHarga();
-        data[1] = String.valueOf(items.getHarga());
-        jumlah = Integer.parseInt(jumlahField2.getText());
-        data[2] = jumlahField2.getText();
-        penjualan.getTabel().addRow(data);
-        itemsComboBox1.requestFocus();
+
     }//GEN-LAST:event_addButton2ActionPerformed
 
     private void jumlahField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jumlahField2ActionPerformed
@@ -202,11 +190,10 @@ public class TransaksiJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jumlahField2ActionPerformed
 
     private void codeField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_codeField1ActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_codeField1ActionPerformed
 
     private void itemsComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemsComboBox1ActionPerformed
-        items = (ModelItems) itemsComboBox1.getSelectedItem();
 
     }//GEN-LAST:event_itemsComboBox1ActionPerformed
 
@@ -215,11 +202,11 @@ public class TransaksiJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_newButton1ActionPerformed
 
     private void removeButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeButton3ActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_removeButton3ActionPerformed
 
     private void saveButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButton4ActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_saveButton4ActionPerformed
 
     /**
