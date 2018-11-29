@@ -13,22 +13,30 @@ import javax.swing.table.DefaultTableModel;
  */
 public class ModelPenjualan {
 
-    private double subTotal = 0;
-    private double total = 0;
-    private DefaultTableModel tabel = new DefaultTableModel();
+    private int jumlah;
+    private double total;
+    DefaultTableModel table = new DefaultTableModel();
 
     public ModelPenjualan() {
-        getTabel().addColumn("Nama");
-        getTabel().addColumn("Harga");
-        getTabel().addColumn("jumlah");
+        getTable().addColumn("Nama");
+        getTable().addColumn("Harga");
+        getTable().addColumn("Jumlah");
     }
 
-    public double countSubTotal() {
-        subTotal = 0;
-        for (int i = 0; i < tabel.getRowCount(); i++) {
-            subTotal = subTotal + Double.parseDouble((String) tabel.getValueAt(i, 3));
+    public double hitungTotal() {
+        total = 0;
+        for (int i = 0; i < table.getRowCount(); i++) {
+            total = total + Double.parseDouble(table.getValueAt(i, 3).toString());
         }
-        return subTotal;
+        return total;
+    }
+
+    public int getJumlah() {
+        return jumlah;
+    }
+
+    public void setJumlah(int jumlah) {
+        this.jumlah = jumlah;
     }
 
     public double getTotal() {
@@ -39,19 +47,12 @@ public class ModelPenjualan {
         this.total = total;
     }
 
-    public DefaultTableModel getTabel() {
-        return tabel;
+    public DefaultTableModel getTable() {
+        return table;
     }
 
-    public void setTabel(DefaultTableModel tabel) {
-        this.tabel = tabel;
+    public void setTable(DefaultTableModel table) {
+        this.table = table;
     }
 
-    public double getSubTotal() {
-        return subTotal;
-    }
-
-    public void setSubTotal(double subTotal) {
-        this.subTotal = subTotal;
-    }
 }

@@ -17,7 +17,6 @@ public class ModelItems {
     public ModelItems(String nama, double harga) {
         this.nama = nama;
         this.harga = harga;
-
     }
 
     public String getNama() {
