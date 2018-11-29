@@ -185,7 +185,16 @@ public class TransaksiJFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void addButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButton2ActionPerformed
-        // TODO add your handling code here:
+        String[] data = new String[3];
+        double harga = 0;
+        int jumlah = 0;
+        data[0] = items.getNama();
+        harga = items.getHarga();
+        data[1] = String.valueOf(items.getHarga());
+        jumlah = Integer.parseInt(jumlahField2.getText());
+        data[2] = jumlahField2.getText();
+        penjualan.getTabel().addRow(data);
+        itemsComboBox1.requestFocus();
     }//GEN-LAST:event_addButton2ActionPerformed
 
     private void jumlahField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jumlahField2ActionPerformed
@@ -197,7 +206,8 @@ public class TransaksiJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_codeField1ActionPerformed
 
     private void itemsComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemsComboBox1ActionPerformed
-        // TODO add your handling code here:
+        items = (ModelItems) itemsComboBox1.getSelectedItem();
+
     }//GEN-LAST:event_itemsComboBox1ActionPerformed
 
     private void newButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newButton1ActionPerformed
