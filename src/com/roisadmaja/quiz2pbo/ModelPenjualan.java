@@ -5,6 +5,8 @@
  */
 package com.roisadmaja.quiz2pbo;
 
+import java.util.ArrayList;
+import java.util.HashSet;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -13,6 +15,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class ModelPenjualan {
 
+    ArrayList<ModelItems> arr = new ArrayList<>();
     private int jumlah;
     private double total;
     DefaultTableModel table = new DefaultTableModel();
@@ -26,7 +29,7 @@ public class ModelPenjualan {
     public double hitungTotal() {
         total = 0;
         for (int i = 0; i < table.getRowCount(); i++) {
-            total = total + Double.parseDouble(table.getValueAt(i, 3).toString());
+            total = total + Double.parseDouble(table.getValueAt(i, 1).toString());
         }
         return total;
     }
@@ -53,6 +56,19 @@ public class ModelPenjualan {
 
     public void setTable(DefaultTableModel table) {
         this.table = table;
+    }
+
+    public String itemList() {
+        String tmp = "";
+        for (int i = 0; i < table.getRowCount(); i++) {
+            tmp += table.getValueAt(i, 0).toString() + " " + table.getValueAt(i, 2).toString()
+                    + " " + (Double.parseDouble(table.getValueAt(i, 1).toString()) * Integer.parseInt(table.getValueAt(i, 2).toString())) + "\n";
+        }
+        return tmp;
+    }
+
+    public int getTableRow() {
+        return table.getRowCount();
     }
 
 }
