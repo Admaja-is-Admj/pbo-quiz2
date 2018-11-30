@@ -13,62 +13,62 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author user
  */
-public class ModelPenjualan {
+public class ModelPenjualan {//class modelpenjualan untuk memodelkan tabel
 
-    ArrayList<ModelItems> arr = new ArrayList<>();
-    private int jumlah;
-    private double total;
-    DefaultTableModel table = new DefaultTableModel();
+    ArrayList<ModelItems> arr = new ArrayList<>();//membuat array list
+    private int jumlah;//untuk menyimpan jumlah
+    private double total;//untuk menyimpan total
+    DefaultTableModel table = new DefaultTableModel(); // menyimpan data tabel
 
-    public ModelPenjualan() {
-        getTable().addColumn("Nama");
-        getTable().addColumn("Harga");
-        getTable().addColumn("Jumlah");
+    public ModelPenjualan() {//konstruktor
+        getTable().addColumn("Nama");//membuat kolom nama
+        getTable().addColumn("Harga");//membuat kolom harga
+        getTable().addColumn("Jumlah");//membuat kolom jumlah
     }
 
-    public double hitungTotal() {
-        total = 0;
-        for (int i = 0; i < table.getRowCount(); i++) {
-            total = total + Double.parseDouble(table.getValueAt(i, 1).toString());
+    public double hitungTotal() {//menghitung menjumlahkan harga dan jumlah yang ada di tabel
+        total = 0;//total untuk menyimpan angka
+        for (int i = 0; i < table.getRowCount(); i++) {//melakukan perulangan
+            total = total + Double.parseDouble(table.getValueAt(i, 1).toString());//menjumlahkan
         }
-        return total;
+        return total;//mengembalikan nilai total
     }
 
-    public int getJumlah() {
-        return jumlah;
+    public int getJumlah() {//mengambil jumlah
+        return jumlah;// mengembalikan jumlah
     }
 
-    public void setJumlah(int jumlah) {
-        this.jumlah = jumlah;
+    public void setJumlah(int jumlah) {//mengatur inputan jumlah
+        this.jumlah = jumlah;//menyimpan nilai jumlah
     }
 
-    public double getTotal() {
-        return total;
+    public double getTotal() {//mengambil nilai total
+        return total;//mengembalikan nilai total
     }
 
-    public void setTotal(double total) {
-        this.total = total;
+    public void setTotal(double total) {//mengatur total
+        this.total = total;//menyimpan nilai total
     }
 
-    public DefaultTableModel getTable() {
-        return table;
+    public DefaultTableModel getTable() {//mengambil tabel
+        return table;//mengembalikan nilai tabel
     }
 
-    public void setTable(DefaultTableModel table) {
-        this.table = table;
+    public void setTable(DefaultTableModel table) {//mengatur tabel
+        this.table = table;//menyimpan nilai di tabel
     }
 
-    public String itemList() {
-        String tmp = "";
-        for (int i = 0; i < table.getRowCount(); i++) {
-            tmp += table.getValueAt(i, 0).toString() + " " + table.getValueAt(i, 2).toString()
+    public String itemList() {//membuat list
+        String tmp = "";//menyimpan nilai string
+        for (int i = 0; i < table.getRowCount(); i++) {//melakukan perulangan
+            tmp += table.getValueAt(i, 0).toString() + " " + table.getValueAt(i, 2).toString()//melakukan pencarian dan penambahan nilai
                     + " " + (Double.parseDouble(table.getValueAt(i, 1).toString()) * Integer.parseInt(table.getValueAt(i, 2).toString())) + "\n";
         }
-        return tmp;
+        return tmp; //mengembalikan nilai
     }
 
-    public int getTableRow() {
-        return table.getRowCount();
+    public int getTableRow() {//mengambil nilai baris
+        return table.getRowCount();//mengembalikan nilai baris
     }
 
 }

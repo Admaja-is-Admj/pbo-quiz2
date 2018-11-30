@@ -17,35 +17,32 @@ import javax.swing.*;
  *
  * @author user
  */
-public class TransaksiJFrame extends javax.swing.JFrame {
+public class TransaksiJFrame extends javax.swing.JFrame { //berguna untuk menampilkan UI
 
-    ModelItems items;
-    ModelPenjualan penjualan = new ModelPenjualan();
+    ModelItems items;// membuat objek items
+    ModelPenjualan penjualan = new ModelPenjualan();//membual objek penjualan
+    int code;
 
-    public TransaksiJFrame() {
-        initComponents();
-        isiCombo();
-        itemsTable1.setModel(penjualan.getTable());
-        addButton2.setEnabled(false);
-        removeButton3.setEnabled(false);
-        itemsComboBox1.setEnabled(false);
-        jumlahField2.setEnabled(false);
-        saveButton4.setEnabled(false);
-        cancelButton5.setEnabled(false);
+    public TransaksiJFrame() {//kontruktor untuk mengeksekusi
+        initComponents();//berisi komponen UI
+        isiCombo();//eksekusi isiCombo
+        itemsTable1.setModel(penjualan.getTable());//eksekusi itemtabel
+        addButton2.setEnabled(false);//mengeksekusi add button
+        removeButton3.setEnabled(false);//mengeksekusi remove button
+        itemsComboBox1.setEnabled(false);//mengeksekusi itemcombo
+        jumlahField2.setEnabled(false);//mengeksekusi jumlahfield
+        saveButton4.setEnabled(false);//eksekusi savebutton
+        cancelButton5.setEnabled(false);//eksekusi cancelButton
     }
 
-    private void isiCombo() {
-        ModelItems item1 = new ModelItems("Kopi", 10000);
+    private void isiCombo() {//berfungsi utuk mengisi combobox
+        ModelItems item1 = new ModelItems("Kopi", 10000);//memasukkan nilaikecombobox
         ModelItems item2 = new ModelItems("Susu", 20000);
         ModelItems item3 = new ModelItems("Gula", 12000);
 
-        itemsComboBox1.addItem(item1);
+        itemsComboBox1.addItem(item1);//memasukkan item
         itemsComboBox1.addItem(item2);
         itemsComboBox1.addItem(item3);
-    }
-
-    public void listItems() {
-
     }
 
     /**
@@ -207,24 +204,26 @@ public class TransaksiJFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void addButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButton2ActionPerformed
-        String[] data = new String[3];
-        double harga = 0;
-        int jumlah;
-        data[0] = items.getNama();
-        harga = items.getHarga();
-        data[1] = String.valueOf(items.getHarga());
-        jumlah = Integer.parseInt(jumlahField2.getText());
-        data[2] = jumlahField2.getText();
-        int tableRow = penjualan.getTableRow();
-        if (tableRow == 0) {
+        String[] data = new String[3];// membuat array data
+        double harga = 0;//menyimpan harga
+        int jumlah;//menyimpan jumlah
+        data[0] = items.getNama();//memasukkan nama
+        harga = items.getHarga();//menyimpan harga
+        data[1] = String.valueOf(items.getHarga());//memasukkan harga
+        jumlah = Integer.parseInt(jumlahField2.getText());//menyimpan jumlah
+        data[2] = jumlahField2.getText();//memasukkan jumlah
+        int tableRow = penjualan.getTableRow();//menginisialisasikan tabel
+        if (tableRow == 0) {//mengatur agar tidak tidak menduplikasi baris
             penjualan.getTable().addRow(new Object[]{items.getNama(), items.getHarga(), jumlah});
         } else {
             for (int i = 0; i < tableRow; i++) {
                 if (penjualan.getTable().getValueAt(i, 0).toString().equals(items.getNama())) {
-                    penjualan.getTable().setValueAt(Integer.parseInt(penjualan.getTable().getValueAt(i, 2).toString()) + Integer.parseInt(jumlahField2.getText()), i, 2);
+                    penjualan.getTable().setValueAt(Integer.parseInt(penjualan.getTable().getValueAt(i, 2).toString())
+                            + Integer.parseInt(jumlahField2.getText()), i, 2);
                     break;
                 } else {
-                    if (!penjualan.getTable().getValueAt(tableRow - 1, 0).toString().equals(items.getNama()) && (i == tableRow - 1)) {
+                    if (!penjualan.getTable().getValueAt(tableRow - 1, 0).toString().equals(items.getNama())
+                            && (i == tableRow - 1)) {
                         penjualan.getTable().addRow(new Object[]{items.getNama(), items.getHarga(), jumlahField2.getText()});
                         break;
                     }
@@ -246,16 +245,15 @@ public class TransaksiJFrame extends javax.swing.JFrame {
 
     private void itemsComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemsComboBox1ActionPerformed
         items = (ModelItems) itemsComboBox1.getSelectedItem();
-
+        //memasukkan ke kombo box
     }//GEN-LAST:event_itemsComboBox1ActionPerformed
 
     private void newButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newButton1ActionPerformed
-        int i = 0;
-        i++;
-        SimpleDateFormat date1 = new SimpleDateFormat("yyMMdd");
-        Date date = new Date();
+        code++;//kode belakang tanggal
+        SimpleDateFormat date1 = new SimpleDateFormat("yyMMdd");//utuk kode format
+        Date date = new Date();//objek date
         String dateNow = date1.format(date);
-        codeField1.setText(dateNow + String.format("%02d", i));
+        codeField1.setText(dateNow + String.format("%02d", code));
         codeField1.setEnabled(false);
         newButton1.setEnabled(true);
         addButton2.setEnabled(true);
@@ -264,23 +262,33 @@ public class TransaksiJFrame extends javax.swing.JFrame {
         itemsComboBox1.setEnabled(true);
         saveButton4.setEnabled(true);
         cancelButton5.setEnabled(true);
+        //mengatur tombol new
     }//GEN-LAST:event_newButton1ActionPerformed
 
     private void removeButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeButton3ActionPerformed
         penjualan.getTable().removeRow(itemsTable1.getSelectedRow());
+        //menghapus isi dari tabel
     }//GEN-LAST:event_removeButton3ActionPerformed
 
     private void saveButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButton4ActionPerformed
+        //menyimpan dan menampilkan semua harga dan barang
+
+        SimpleDateFormat date1 = new SimpleDateFormat("yyMMdd");
+        Date date = new Date();
+        String dateNow = date1.format(date);
+        codeField1.setText(dateNow + String.format("%02d", code));
         StringBuilder sb = new StringBuilder();
         sb.append("Kode : ").append(codeField1.getText()).append("\n");
         sb.append("Daftar belanja : \n").append(penjualan.itemList());
         sb.append("Total : ").append(penjualan.hitungTotal());
         JOptionPane.showMessageDialog(this, sb, "Detail Penjualan", JOptionPane.INFORMATION_MESSAGE);
+        code++;
     }//GEN-LAST:event_saveButton4ActionPerformed
 
     private void cancelButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButton5ActionPerformed
         new TransaksiJFrame().setVisible(true);
         this.dispose();
+        //menghapus semua record dan mereset data keawal
     }//GEN-LAST:event_cancelButton5ActionPerformed
 
     /**
