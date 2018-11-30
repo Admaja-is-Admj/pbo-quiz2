@@ -8,6 +8,8 @@ package com.roisadmaja.quiz2pbo;
 import static com.sun.org.apache.xalan.internal.lib.ExsltDatetime.date;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.*;
 
@@ -24,6 +26,12 @@ public class TransaksiJFrame extends javax.swing.JFrame {
         initComponents();
         isiCombo();
         itemsTable1.setModel(penjualan.getTable());
+        addButton2.setEnabled(false);
+        removeButton3.setEnabled(false);
+        itemsComboBox1.setEnabled(false);
+        jumlahField2.setEnabled(false);
+        saveButton4.setEnabled(false);
+        cancelButton5.setEnabled(false);
     }
 
     private void isiCombo() {
@@ -34,6 +42,10 @@ public class TransaksiJFrame extends javax.swing.JFrame {
         itemsComboBox1.addItem(item1);
         itemsComboBox1.addItem(item2);
         itemsComboBox1.addItem(item3);
+    }
+
+    public void listItems() {
+
     }
 
     /**
@@ -59,6 +71,8 @@ public class TransaksiJFrame extends javax.swing.JFrame {
         cancelButton5 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Transaksi");
+        setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         jLabel1.setText("Code");
 
@@ -195,14 +209,30 @@ public class TransaksiJFrame extends javax.swing.JFrame {
     private void addButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButton2ActionPerformed
         String[] data = new String[3];
         double harga = 0;
-        int jumlah = 0;
+        int jumlah;
         data[0] = items.getNama();
         harga = items.getHarga();
         data[1] = String.valueOf(items.getHarga());
         jumlah = Integer.parseInt(jumlahField2.getText());
         data[2] = jumlahField2.getText();
+        int tableRow = penjualan.getTableRow();
+        if (tableRow == 0) {
+            penjualan.getTable().addRow(new Object[]{items.getNama(), items.getHarga(), jumlah});
+        } else {
+            for (int i = 0; i < tableRow; i++) {
+                if (penjualan.getTable().getValueAt(i, 0).toString().equals(items.getNama())) {
+                    penjualan.getTable().setValueAt(Integer.parseInt(penjualan.getTable().getValueAt(i, 2).toString()) + Integer.parseInt(jumlahField2.getText()), i, 2);
+                    break;
+                } else {
+                    if (!penjualan.getTable().getValueAt(tableRow - 1, 0).toString().equals(items.getNama()) && (i == tableRow - 1)) {
+                        penjualan.getTable().addRow(new Object[]{items.getNama(), items.getHarga(), jumlahField2.getText()});
+                        break;
+                    }
+                }
 
-        penjualan.getTable().addRow(data);
+            }
+        }
+
         itemsComboBox1.requestFocus();
     }//GEN-LAST:event_addButton2ActionPerformed
 
@@ -227,7 +257,13 @@ public class TransaksiJFrame extends javax.swing.JFrame {
         String dateNow = date1.format(date);
         codeField1.setText(dateNow + String.format("%02d", i));
         codeField1.setEnabled(false);
-        newButton1.setEnabled(false);
+        newButton1.setEnabled(true);
+        addButton2.setEnabled(true);
+        removeButton3.setEnabled(true);
+        jumlahField2.setEnabled(true);
+        itemsComboBox1.setEnabled(true);
+        saveButton4.setEnabled(true);
+        cancelButton5.setEnabled(true);
     }//GEN-LAST:event_newButton1ActionPerformed
 
     private void removeButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeButton3ActionPerformed
@@ -237,10 +273,8 @@ public class TransaksiJFrame extends javax.swing.JFrame {
     private void saveButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButton4ActionPerformed
         StringBuilder sb = new StringBuilder();
         sb.append("Kode : ").append(codeField1.getText()).append("\n");
-        sb.append("Daftar belanja : ").append("\n");
-        while (itemsTable1.getRowCount() > 0) {
-            sb.append(sb)
-        }
+        sb.append("Daftar belanja : \n").append(penjualan.itemList());
+        sb.append("Total : ").append(penjualan.hitungTotal());
         JOptionPane.showMessageDialog(this, sb, "Detail Penjualan", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_saveButton4ActionPerformed
 
